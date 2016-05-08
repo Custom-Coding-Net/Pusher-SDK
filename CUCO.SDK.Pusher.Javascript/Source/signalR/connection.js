@@ -1,4 +1,4 @@
-﻿const DEFAULT_CONNECTION_SETTINGS = { transport: "webSockets" };
+﻿const DEFAULT_CONNECTION_SETTINGS = { transport: ["webSockets", "longPolling"] };
 
 var Api = require('../api');
 
@@ -22,7 +22,7 @@ Connection.prototype.connect = function (queryString) {
 
     this.hubs.MessageHub = this.connection.createHubProxy("MessageHub");
     this.hubs.MessageHub.on('Receive', function () {}); // this is a fake subscription for correct connecting. 
-
+    
     return this.connection.start(DEFAULT_CONNECTION_SETTINGS);
 };
 
